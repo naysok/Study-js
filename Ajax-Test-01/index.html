@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Ajax Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+
+
+  <body>
+
+    <form id="form_1" method="post" accept-charset="utf-8" return false>
+      <p>name <input type="text" name="userid" id="userid"> </p>
+      <p>pass <input type="text" name="pass" id="pass"> </p>
+
+    </form>
+
+    <button id="ajax">ajax</button>
+
+    <div class="result"></div>
+
+
+    <script type="text/javascript">
+
+      $(function(){
+
+        // ajax button clicks
+        $('#ajax').on('click', function(){
+          $.ajax({
+            url: 'request.php',
+            type: 'POST',
+            data:{
+              'userid': $('#userid').val(),
+              'pass': $('#pass').val()
+            }
+          })
+
+          // Success
+          .done((data) => {
+            $('.result').html(data);
+            console.log(data);;
+          })
+
+          // Failed
+          .fail((data) => {
+            $('.result').html(date);
+            console.log(data);
+          })
+
+          //
+          .always((data) => {
+
+          });
+        });
+      });
+
+    </script>
+
+  </body>
+
+
+</html>
